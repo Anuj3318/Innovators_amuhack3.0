@@ -1,32 +1,3 @@
 import finger
 
 # Initialize the fingerprint scanner
-scanner = finger.Scanner('03FGC2213')
-
-# Initialize the voting system
-votes = {}
-
-while True:
-    # Scan a fingerprint
-    image, template = scanner.scan()
-
-    # Check if a fingerprint was scanned
-    if image is not None:
-        # Identify the fingerprint
-        result = scanner.search(template)
-
-        # Check if the fingerprint was identified
-        if result is not None:
-            # Update the voting system
-            if result['id'] in votes:
-                votes[result['id']] += 1
-            else:
-                votes[result['id']] = 1
-
-            # Print the voting results
-            for id, count in votes.items():
-                print(f'ID: {id}, Votes: {count}')
-        else:
-            print('Fingerprint not recognized')
-    else:
-        print('No fingerprint scanned')
